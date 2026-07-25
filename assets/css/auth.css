@@ -1,0 +1,339 @@
+/* =========================================================
+   auth.css — Login, Register & Forgot-Password Pages
+   FoodHub | Version 2.0
+   ========================================================= */
+
+/* ── Auth Page Layout ───────────────────────────────────── */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background blobs */
+.auth-page::before,
+.auth-page::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+    animation: authBlob 8s ease-in-out infinite alternate;
+}
+.auth-page::before {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #ff6b35, transparent 70%);
+    top: -150px;
+    right: -150px;
+}
+.auth-page::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #f7931e, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+    animation-delay: -4s;
+}
+@keyframes authBlob {
+    from { transform: scale(1) rotate(0deg); }
+    to   { transform: scale(1.2) rotate(30deg); }
+}
+
+/* ── Auth Card ───────────────────────────────────────────── */
+.auth-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 2.5rem 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 1;
+    animation: authCardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes authCardIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ── Auth Logo / Brand ────────────────────────────────────── */
+.auth-brand {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.auth-brand .brand-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
+}
+.auth-brand h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 0.25rem;
+}
+.auth-brand p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ── Auth Form Heading ────────────────────────────────────── */
+.auth-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+.auth-sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.875rem;
+    margin-bottom: 1.75rem;
+}
+
+/* ── Form Controls ────────────────────────────────────────── */
+.auth-form .form-group {
+    margin-bottom: 1.25rem;
+}
+.auth-form label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.45rem;
+}
+.auth-form .input-wrapper {
+    position: relative;
+}
+.auth-form .input-wrapper .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.35);
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+.auth-form .input-wrapper input,
+.auth-form .input-wrapper select {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.6rem;
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+    outline: none;
+    box-sizing: border-box;
+}
+.auth-form .input-wrapper input::placeholder {
+    color: rgba(255,255,255,0.28);
+}
+.auth-form .input-wrapper input:focus,
+.auth-form .input-wrapper select:focus {
+    border-color: #ff6b35;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.18);
+}
+.auth-form .input-wrapper input:focus + .input-icon,
+.auth-form .input-wrapper input:focus ~ .input-icon {
+    color: #ff6b35;
+}
+
+/* Toggle password visibility button */
+.auth-form .toggle-pw {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.35);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.auth-form .toggle-pw:hover { color: #ff6b35; }
+
+/* ── Submit Button ────────────────────────────────────────── */
+.auth-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+}
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(255, 107, 53, 0.45);
+}
+.auth-btn:active { transform: translateY(0); opacity: 0.9; }
+.auth-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+/* ── Role Selector ────────────────────────────────────────── */
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+.role-card {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+.role-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.role-card .role-icon { font-size: 1.4rem; display: block; margin-bottom: 0.3rem; }
+.role-card .role-label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.65); }
+.role-card:hover { border-color: rgba(255, 107, 53, 0.5); background: rgba(255,107,53,0.07); }
+.role-card.selected {
+    border-color: #ff6b35;
+    background: rgba(255, 107, 53, 0.15);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+}
+.role-card.selected .role-label { color: #ff6b35; }
+
+/* ── Divider ─────────────────────────────────────────────── */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+}
+.auth-divider::before, .auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+}
+
+/* ── Auth Footer Link ────────────────────────────────────── */
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.875rem;
+}
+.auth-footer a {
+    color: #ff6b35;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.auth-footer a:hover { opacity: 0.8; text-decoration: underline; }
+
+/* ── Forgot Password Link ────────────────────────────────── */
+.forgot-link {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    float: right;
+    margin-top: -0.35rem;
+    transition: color 0.2s;
+}
+.forgot-link:hover { color: #ff6b35; }
+
+/* ── Alert / Error Messages ─────────────────────────────── */
+.auth-alert {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    border: none;
+}
+.auth-alert.danger  { background: rgba(220, 53, 69, 0.18); color: #ff8fa3; border-left: 3px solid #dc3545; }
+.auth-alert.success { background: rgba(25, 135, 84, 0.18); color: #75f5b3; border-left: 3px solid #198754; }
+.auth-alert.info    { background: rgba(13, 110, 253, 0.18); color: #90c7ff; border-left: 3px solid #0d6efd; }
+.auth-alert i { margin-top: 0.05rem; flex-shrink: 0; }
+
+/* ── Terms Checkbox ─────────────────────────────────────── */
+.auth-check-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.825rem;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    line-height: 1.5;
+}
+.auth-check-label input[type="checkbox"] {
+    accent-color: #ff6b35;
+    width: 15px;
+    height: 15px;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.auth-check-label a { color: #ff6b35; text-decoration: none; }
+.auth-check-label a:hover { text-decoration: underline; }
+
+/* ── Strength Meter ─────────────────────────────────────── */
+.password-strength {
+    height: 4px;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+.password-strength-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s, background-color 0.4s;
+    width: 0%;
+}
+.strength-weak   { width: 33%;  background: #dc3545; }
+.strength-medium { width: 66%;  background: #ffc107; }
+.strength-strong { width: 100%; background: #198754; }
+.strength-label  { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.25rem; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .auth-card { padding: 1.75rem 1.25rem; }
+    .role-grid { grid-template-columns: repeat(2, 1fr); }
+}

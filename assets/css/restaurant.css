@@ -1,0 +1,285 @@
+/* =========================================================
+   restaurant.css — Restaurant Owner Panel Styles
+   FoodHub | Version 2.0
+   ========================================================= */
+
+/* ── Restaurant Panel Theme Overrides ───────────────────── */
+:root {
+    --restaurant-primary: #e65c00;
+    --restaurant-secondary: #f9a825;
+    --restaurant-gradient: linear-gradient(135deg, #e65c00, #f9a825);
+    --restaurant-card-bg: rgba(255, 255, 255, 0.035);
+    --restaurant-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Order Status Columns (Kanban-style) ────────────────── */
+.order-kanban {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    padding: 1rem 0;
+}
+.kanban-column {
+    background: var(--restaurant-card-bg);
+    border: 1px solid var(--restaurant-border);
+    border-radius: 16px;
+    padding: 1rem;
+}
+.kanban-column-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--restaurant-border);
+}
+.kanban-column-header h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+.kanban-count-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* ── Menu / Food Item Card ──────────────────────────────── */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+.menu-item-card {
+    background: var(--restaurant-card-bg);
+    border: 1px solid var(--restaurant-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.menu-item-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+.menu-item-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+.menu-item-body {
+    padding: 1rem;
+}
+.menu-item-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.menu-item-price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--restaurant-secondary);
+    margin-bottom: 0.5rem;
+}
+.menu-item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    gap: 0.5rem;
+}
+.menu-item-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+}
+.menu-item-availability.available   { background: rgba(25, 135, 84, 0.15); color: #75f5b3; }
+.menu-item-availability.unavailable { background: rgba(220, 53, 69, 0.15); color: #ff8fa3; }
+
+/* ── Veg / Non-veg Indicator ────────────────────────────── */
+.veg-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.veg-badge.veg     { border-color: #198754; background: rgba(25,135,84,0.15); }
+.veg-badge.veg::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #198754; display: block; }
+.veg-badge.non-veg { border-color: #dc3545; background: rgba(220,53,69,0.15); }
+.veg-badge.non-veg::after { content: '▲'; font-size: 9px; color: #dc3545; line-height: 1; }
+
+/* ── Restaurant Analytics Cards ─────────────────────────── */
+.analytics-card {
+    background: var(--restaurant-card-bg);
+    border: 1px solid var(--restaurant-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s;
+}
+.analytics-card:hover { transform: translateY(-3px); }
+.analytics-card-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: rgba(255,255,255,0.5);
+}
+.analytics-card-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+.analytics-card-delta {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.analytics-card-delta.up   { color: #75f5b3; }
+.analytics-card-delta.down { color: #ff8fa3; }
+
+/* ── Restaurant Profile Settings Card ───────────────────── */
+.restaurant-profile-card {
+    background: var(--restaurant-card-bg);
+    border: 1px solid var(--restaurant-border);
+    border-radius: 20px;
+    overflow: hidden;
+}
+.restaurant-banner-preview {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #e65c00, #f9a825);
+}
+.restaurant-logo-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: -40px 0 0 1.5rem;
+}
+.restaurant-logo-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    border: 3px solid rgba(255,255,255,0.1);
+    object-fit: cover;
+    background: #1a1a2e;
+}
+.restaurant-logo-edit {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--restaurant-gradient);
+    border: none;
+    color: #fff;
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.restaurant-profile-body { padding: 1rem 1.5rem 1.5rem; }
+
+/* ── Order Receipt Card ─────────────────────────────────── */
+.order-ticket {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.order-ticket:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: var(--restaurant-primary);
+}
+.order-ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+.order-ticket-id { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.6); }
+.order-ticket-time { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+.order-ticket-customer { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; }
+.order-ticket-items { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem; }
+.order-ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.order-ticket-amount { font-size: 1rem; font-weight: 800; color: var(--restaurant-secondary); }
+
+/* ── Timings Manager ────────────────────────────────────── */
+.timing-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.timing-day { font-weight: 600; color: #fff; min-width: 90px; font-size: 0.9rem; }
+.timing-closed-toggle input[type="checkbox"] { accent-color: var(--restaurant-primary); }
+.timing-time-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+}
+.timing-time-group input[type="time"] {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+    color: #fff;
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ── Delivery Zone Map Placeholder ─────────────────────── */
+.delivery-zone-map {
+    width: 100%;
+    height: 380px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.9rem;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.delivery-zone-map i { font-size: 2.5rem; opacity: 0.35; }

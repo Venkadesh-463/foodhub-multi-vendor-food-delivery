@@ -1,0 +1,198 @@
+/* =========================================================
+   admin.css — Admin Panel Styles
+   FoodHub | Version 2.0
+   ========================================================= */
+
+:root {
+    --admin-primary:   #6c5ce7;
+    --admin-secondary: #a29bfe;
+    --admin-gradient:  linear-gradient(135deg, #6c5ce7, #a29bfe);
+    --admin-card-bg:   rgba(255,255,255,0.035);
+    --admin-border:    rgba(255,255,255,0.1);
+    --admin-danger:    #e74c3c;
+    --admin-success:   #00b894;
+    --admin-warning:   #f39c12;
+}
+
+/* ── Admin Header Bar ───────────────────────────────────── */
+.admin-topbar {
+    background: rgba(15,12,41,.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--admin-border);
+    padding: .75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 900;
+}
+.admin-topbar-title { font-size: 1rem; font-weight: 700; color: #fff; }
+.admin-topbar-actions { display: flex; align-items: center; gap: .75rem; }
+
+/* ── Admin Sidebar ──────────────────────────────────────── */
+.admin-sidebar {
+    width: 260px; min-height: 100vh;
+    background: linear-gradient(180deg, rgba(108,92,231,.12) 0%, rgba(15,12,41,1) 100%);
+    border-right: 1px solid var(--admin-border);
+    padding: 1.5rem 0; flex-shrink: 0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.admin-sidebar-brand {
+    display: flex; align-items: center; gap: .75rem;
+    padding: 0 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--admin-border);
+    margin-bottom: 1rem;
+}
+.admin-sidebar-brand .brand-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--admin-gradient);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: #fff;
+}
+.admin-sidebar-brand span { font-size: 1.1rem; font-weight: 800; color: #fff; }
+.admin-sidebar-brand span em { color: var(--admin-secondary); font-style: normal; }
+
+.admin-nav-section { padding: 0 1rem; margin-bottom: .5rem; }
+.admin-nav-section-title {
+    font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: rgba(255,255,255,.3); padding: .5rem .25rem; margin-bottom: .25rem;
+}
+.admin-nav-link {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .65rem .75rem; border-radius: 10px;
+    color: rgba(255,255,255,.55); font-size: .875rem; font-weight: 500;
+    text-decoration: none; transition: all .2s; margin-bottom: .1rem; white-space: nowrap;
+}
+.admin-nav-link i { width: 18px; text-align: center; flex-shrink: 0; font-size: .9rem; }
+.admin-nav-link:hover { background: rgba(255,255,255,.07); color: #fff; }
+.admin-nav-link.active { background: rgba(108,92,231,.2); color: var(--admin-secondary); font-weight: 600; }
+.admin-nav-link.active i { color: var(--admin-primary); }
+.admin-nav-badge {
+    margin-left: auto; font-size: .68rem; font-weight: 700; padding: .15rem .5rem;
+    border-radius: 10px; background: var(--admin-primary); color: #fff;
+}
+
+/* ── Admin Layout Wrapper ───────────────────────────────── */
+.admin-layout { display: flex; min-height: 100vh; }
+.admin-content { flex: 1; padding: 1.75rem; min-width: 0; }
+.admin-page-header { margin-bottom: 1.75rem; }
+.admin-page-title { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: .25rem; }
+.admin-page-breadcrumb { font-size: .8rem; color: rgba(255,255,255,.4); display: flex; gap: .4rem; align-items: center; }
+.admin-page-breadcrumb a { color: var(--admin-secondary); text-decoration: none; }
+
+/* ── Admin KPI Stats Row ────────────────────────────────── */
+.admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1.25rem; margin-bottom: 1.75rem; }
+.admin-stat-card {
+    background: var(--admin-card-bg); border: 1px solid var(--admin-border);
+    border-radius: 18px; padding: 1.5rem; position: relative; overflow: hidden; transition: transform .2s;
+}
+.admin-stat-card:hover { transform: translateY(-4px); }
+.admin-stat-card::before {
+    content: ''; position: absolute; top: -30px; right: -30px;
+    width: 100px; height: 100px; border-radius: 50%; opacity: .08;
+}
+.admin-stat-card.purple::before { background: var(--admin-primary); }
+.admin-stat-card.green::before  { background: var(--admin-success); }
+.admin-stat-card.orange::before { background: var(--admin-warning); }
+.admin-stat-card.red::before    { background: var(--admin-danger);  }
+.stat-icon {
+    width: 46px; height: 46px; border-radius: 12px; margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.stat-icon.purple { background: rgba(108,92,231,.2); color: var(--admin-secondary); }
+.stat-icon.green  { background: rgba(0,184,148,.2);  color: #00b894; }
+.stat-icon.orange { background: rgba(243,156,18,.2); color: #f39c12; }
+.stat-icon.red    { background: rgba(231,76,60,.2);  color: #e74c3c; }
+.stat-value  { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: .3rem; }
+.stat-label  { font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .5px; }
+.stat-delta  { font-size: .78rem; font-weight: 600; margin-top: .5rem; }
+.stat-delta.up   { color: #75f5b3; }
+.stat-delta.down { color: #ff8fa3; }
+
+/* ── Admin Data Table ───────────────────────────────────── */
+.admin-table-card { background: var(--admin-card-bg); border: 1px solid var(--admin-border); border-radius: 18px; overflow: hidden; }
+.admin-table-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--admin-border); flex-wrap: wrap; gap: 1rem; }
+.admin-table-title  { font-size: 1rem; font-weight: 700; color: #fff; }
+.admin-table-actions { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+.admin-search-box { position: relative; }
+.admin-search-box input {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px; padding: .5rem 1rem .5rem 2.2rem;
+    color: #fff; font-size: .875rem; font-family: inherit; outline: none; width: 220px;
+}
+.admin-search-box input::placeholder { color: rgba(255,255,255,.3); }
+.admin-search-box input:focus { border-color: var(--admin-primary); background: rgba(255,255,255,.09); }
+.admin-search-box i { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,.3); font-size: .85rem; pointer-events: none; }
+.admin-table-wrap { overflow-x: auto; }
+table.admin-table { width: 100%; border-collapse: collapse; }
+table.admin-table thead th { background: rgba(255,255,255,.04); padding: .85rem 1.25rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: rgba(255,255,255,.4); white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,.06); }
+table.admin-table tbody td { padding: 1rem 1.25rem; font-size: .875rem; color: rgba(255,255,255,.75); border-bottom: 1px solid rgba(255,255,255,.04); vertical-align: middle; }
+table.admin-table tbody tr:hover td { background: rgba(255,255,255,.025); }
+table.admin-table tbody tr:last-child td { border-bottom: none; }
+.admin-table-avatar { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; background: rgba(255,255,255,.08); }
+.admin-table-name { font-weight: 600; color: #fff; }
+.admin-table-sub  { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: .1rem; }
+
+/* ── Admin Badges ───────────────────────────────────────── */
+.badge-admin    { background: rgba(108,92,231,.2); color: var(--admin-secondary); }
+.badge-active   { background: rgba(0,184,148,.15); color: #00b894; }
+.badge-pending  { background: rgba(243,156,18,.15); color: #f39c12; }
+.badge-inactive { background: rgba(255,255,255,.08); color: rgba(255,255,255,.4); }
+.badge-banned   { background: rgba(231,76,60,.15);  color: #e74c3c; }
+.badge-approved { background: rgba(0,184,148,.15); color: #00b894; }
+.badge-rejected { background: rgba(231,76,60,.15); color: #e74c3c; }
+.admin-badge {
+    font-size: .72rem; font-weight: 700; padding: .25rem .65rem;
+    border-radius: 20px; text-transform: capitalize; letter-spacing: .3px;
+}
+
+/* ── Admin Action Buttons ───────────────────────────────── */
+.admin-action-btn {
+    width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; font-size: .82rem;
+    transition: all .2s;
+}
+.admin-action-btn.view   { background: rgba(13,110,253,.15); color: #6ea8fe; }
+.admin-action-btn.edit   { background: rgba(255,193,7,.15);  color: #ffc107; }
+.admin-action-btn.delete { background: rgba(220,53,69,.15);  color: #ff8fa3; }
+.admin-action-btn.approve{ background: rgba(0,184,148,.15);  color: #00b894; }
+.admin-action-btn:hover  { filter: brightness(1.3); transform: scale(1.1); }
+
+/* ── Admin Pagination ───────────────────────────────────── */
+.admin-pagination { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-top: 1px solid var(--admin-border); flex-wrap: wrap; gap: .75rem; }
+.admin-pagination-info { font-size: .8rem; color: rgba(255,255,255,.4); }
+.admin-pagination-pages { display: flex; gap: .3rem; }
+.admin-page-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color: rgba(255,255,255,.5); font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.admin-page-btn:hover  { background: rgba(108,92,231,.2); color: #fff; border-color: var(--admin-primary); }
+.admin-page-btn.active { background: var(--admin-gradient); color: #fff; border-color: transparent; }
+
+/* ── Admin Form Card ────────────────────────────────────── */
+.admin-form-card { background: var(--admin-card-bg); border: 1px solid var(--admin-border); border-radius: 18px; padding: 1.75rem; }
+.admin-form-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; padding-bottom: .75rem; border-bottom: 1px solid var(--admin-border); }
+.admin-form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.25rem; }
+.admin-form-group { display: flex; flex-direction: column; gap: .45rem; }
+.admin-form-label { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .5px; }
+.admin-form-control {
+    padding: .7rem 1rem; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.1);
+    border-radius: 10px; color: #fff; font-size: .9rem; font-family: inherit; outline: none; transition: all .2s;
+}
+.admin-form-control:focus { border-color: var(--admin-primary); background: rgba(255,255,255,.09); box-shadow: 0 0 0 4px rgba(108,92,231,.18); }
+.admin-form-control::placeholder { color: rgba(255,255,255,.25); }
+.admin-form-actions { display: flex; gap: .75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+/* ── Reports / Chart Wrapper ────────────────────────────── */
+.report-chart-card { background: var(--admin-card-bg); border: 1px solid var(--admin-border); border-radius: 18px; padding: 1.5rem; }
+.report-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: .75rem; }
+.report-chart-title  { font-size: 1rem; font-weight: 700; color: #fff; }
+.report-chart-area   { height: 280px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.25); font-size: .875rem; }
+
+/* ── Settings Toggle Rows ───────────────────────────────── */
+.setting-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+.setting-row:last-child { border-bottom: none; }
+.setting-info { flex: 1; padding-right: 1.5rem; }
+.setting-info h4 { font-size: .9rem; font-weight: 600; color: #fff; margin-bottom: .2rem; }
+.setting-info p  { font-size: .8rem; color: rgba(255,255,255,.4); margin: 0; }
+
+/* ── Commission & Tax Inputs ────────────────────────────── */
+.commission-row { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--admin-card-bg); border: 1px solid var(--admin-border); border-radius: 12px; margin-bottom: .75rem; }
+.commission-label { flex: 1; font-size: .9rem; font-weight: 600; color: #fff; }
+.commission-input { width: 90px; padding: .5rem .75rem; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; color: #fff; font-size: .9rem; font-family: inherit; text-align: center; outline: none; }
+.commission-input:focus { border-color: var(--admin-primary); }
+.commission-unit { font-size: .85rem; color: rgba(255,255,255,.4); }
