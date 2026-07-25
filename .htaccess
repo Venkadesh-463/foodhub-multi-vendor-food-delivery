@@ -1,0 +1,16 @@
+# FoodHub Platform Apache Configuration & URL Rewriting
+Options -Indexes +FollowSymLinks
+RewriteEngine On
+
+# Secure sensitive directories
+RewriteRule ^(config|services|helpers|middleware|logs|database)/ - [F,L]
+
+# Prevent direct access to .log files
+<FilesMatch "\.log$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Handle Authorization Headers
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
